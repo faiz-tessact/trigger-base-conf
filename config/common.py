@@ -32,6 +32,9 @@ class Common(Configuration):
         #rest framework
         'rest_framework',
 
+        #project apps
+        'library',
+
     ]    
     
     MIDDLEWARE = [

@@ -6,8 +6,7 @@ import uuid
 class File(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     video_id = models.UUIDField(editable=False, null=True)
-    created_on = models.DateTimeField(auto_now_add=True, null=True)
-    type = models.CharField(max_length=128, null=True)
+    file_type = models.CharField(max_length=128, null=True)
     title = models.CharField(max_length=128, null=True)
     url = models.URLField(null=True, blank=True)
     location = models.ForeignKey('Folder', null=True, blank=True,
@@ -15,11 +14,14 @@ class File(models.Model):
     category = models.ForeignKey(
         'Folder', null=True, blank=True, related_name="file_category", on_delete=models.CASCADE)
     workspace =  models.UUIDField(editable=False, null=True)
+    file_size = models.FloatField(null=True)
+    path = models.URLField(null=True)
+
+    created_on = models.DateTimeField(auto_now_add=True, null=True)
     modified_on = models.DateTimeField(auto_now=True, null=True)
     created_by = models.UUIDField(editable=False, null=True)
     modified_by = models.UUIDField(editable=False, null=True)
-    file_size = models.FloatField(null=True)
-    path = models.URLField(null=True)
+
 
     class Meta:
 
